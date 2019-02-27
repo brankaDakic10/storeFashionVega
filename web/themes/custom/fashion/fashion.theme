@@ -16,7 +16,7 @@ function fashion_preprocess_node(&$variables) {
 //      $node = $variables['elements'];
 //   $node->get('field_product_price')->getValue();
 //   $node->get('field_product_description')->getValue();
-        $splitedPrice = explode(".", $node->field_product_price->value);
+        $splitedPrice = explode('.', $node->field_product_price->value);
         $variables['product']['productPrice'] = [
 
             'mainPrice' => $splitedPrice[0],
@@ -78,3 +78,12 @@ function fashion_preprocess_node(&$variables) {
         }
     }
 }
+
+function fashion_theme_suggestions_form_element_alter(&$suggestions, $variables, $hook) {
+    $suggestions[] = $hook . '__fashion';
+}
+//
+// function fashion_theme_preprocess_field(&$variables, $hook) {
+//    $a=1;
+//     $element = $variables['element'];
+// }

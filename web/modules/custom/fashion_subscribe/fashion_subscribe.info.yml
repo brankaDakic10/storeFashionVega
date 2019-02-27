@@ -1,0 +1,5 @@
+name: Fashion Subscribe Module
+description: Subscribe module
+package: Custom
+type: module
+core: 8.x
