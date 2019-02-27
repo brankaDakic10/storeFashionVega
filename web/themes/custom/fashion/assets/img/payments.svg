@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-98 -91.7 337.1 200" style="enable-background:new -98 -91.7 337.1 200;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);}
+	.st2{clip-path:url(#SVGID_6_);fill:#FFFFFF;}
+	.st3{clip-path:url(#SVGID_8_);}
+</style>
+<g>
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-49.2" y="-91.7" width="239.5" height="200"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st0">
+			<path d="M154,55.3H-37.4c-6.5,0-11.9-5.3-11.9-11.9V-79.9c0-6.5,5.3-11.9,11.9-11.9H154c6.5,0,11.9,5.3,11.9,11.9V43.5
+				C165.8,50,160.5,55.3,154,55.3z M-37.4-83.6c-2.1,0-3.7,1.6-3.7,3.7V43.5c0,2.1,1.6,3.7,3.7,3.7H154c2.1,0,3.7-1.6,3.7-3.7V-79.9
+				c0-2.1-1.6-3.7-3.7-3.7H-37.4z"/>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_3_" x="-49.2" y="-91.7" width="239.5" height="200"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+		</clipPath>
+		<rect x="-45.2" y="-59.1" class="st1" width="206.9" height="28.5"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_5_" x="-49.2" y="-91.7" width="239.5" height="200"/>
+		</defs>
+		<clipPath id="SVGID_6_">
+			<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+		</clipPath>
+		<path class="st2" d="M132.9-18.2c0,0-18.7,19.6-53.6,19.6c0,14.1,1.2,28.2,4,41.5c3.2,13.5,8.4,26.2,16.4,36.9
+			c7.8,10.4,18.7,18.7,33.1,24.2c43.5-16.7,53.3-60.2,53.3-102.6C151.7,1.4,132.9-18.2,132.9-18.2"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_7_" x="-49.2" y="-91.7" width="239.5" height="200"/>
+		</defs>
+		<clipPath id="SVGID_8_">
+			<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st3">
+			<path d="M133,108.4l-1.5-0.6c-14.6-5.6-26.4-14.2-35-25.6C88.7,71.9,82.9,59,79.4,43.8c-2.8-12.7-4.1-26.9-4.1-42.4v-4.1h4.1
+				c32.6,0,50.5-18.2,50.7-18.3l3-3.1l2.9,3.1c0.2,0.2,18.1,18.3,50.4,18.3h4.1v4.1c0,57.1-18.3,91.9-55.9,106.4L133,108.4z
+				 M83.5,5.4C83.7,18.8,85,31.1,87.4,42c3.3,14,8.5,25.8,15.7,35.3c7.3,9.8,17.4,17.3,29.9,22.3c32.3-13.1,48.4-44,49.2-94.2
+				c-26-1.1-42.8-12.7-49.2-18.1C126.5-7.3,109.7,4.3,83.5,5.4z"/>
+		</g>
+	</g>
+</g>
+</svg>

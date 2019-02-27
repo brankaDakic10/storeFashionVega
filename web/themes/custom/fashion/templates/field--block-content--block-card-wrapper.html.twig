@@ -1,0 +1,19 @@
+{#used to see context(content) but here are items(here 4) and all data in content(body,field_card_title,field_card_image)#}
+{#{{ breakpoint() }}#}
+<div class="content-wrap">
+{% for item in items %}
+    <div class="service-item">
+        <div class="service-item-main">
+		    <div class="thumb">
+		    <img src="{{ file_url(item.content.field_card_image.0['#item'].entity.uri.value) }}" width="47" alt="">
+		    {#{{ item.content.field_card_image }}#}
+		    </div>
+
+            <h6>{{ item.content.field_card_title[0]['#context']['value'] }}</h6>
+            <p class="service-body">{{ item.content.field_card_body[0]["#context"]["value"] }}</p>
+       </div>
+    </div>
+
+
+
+{% endfor %}

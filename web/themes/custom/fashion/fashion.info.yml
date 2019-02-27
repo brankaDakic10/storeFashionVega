@@ -1,0 +1,14 @@
+name: Fashion Style
+type: theme
+desription: Simple theme for fashion shop
+package: Custom
+core: 8.x
+libraries:
+  - fashion/global-css
+  - fashion/global-js
+regions:
+  header: 'Header'
+  below_header: 'Below Header '
+  content: 'Main Content'
+  above_footer: 'Above Footer'
+  footer: 'Footer'

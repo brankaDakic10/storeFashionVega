@@ -1,0 +1,262 @@
+<div class="block product-page-shop">
+    <a class="back-link" href="product-overvirew.html"><i class="icon font-ico-arrow-left"></i> Back to products</a>
+    <div class="product-image">
+        {#{{ breakpoint() }}#}
+
+        <div class="product-thumbnails">
+            {% for photo in product.photos %}
+            {% if loop.first %}
+                <div class="thumb selected">
+            {% else %}
+                <div class="thumb ">
+            {% endif %}
+                    <a href="#">
+                        <img src="{{ photo['url'] }}" alt="">
+                    </a>
+                    <span class="thumb-size">thumb size <span>70X86</span></span>
+
+                </div>
+             {% endfor %}
+            </div>
+            <div class="img-wrap">
+                {% if product.photos[0] %}
+                <img class="full-width" src="{{ product.photos[0]['url'] }}" alt="{{ photo['title'] }}">
+                <span class="img-ratio">
+                    <span>image size <span>690x862</span></span>
+                    <span>Ratio <span>800x1000</span></span>
+				</span>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="product-details">
+            <div class="block">
+                <h1 class="product-name">{{ label }}</h1>
+                <span class="product-price">{{ product.productPrice.mainPrice }},<sup>{{ product.productPrice.subPrice }} {{ product.productPrice.suffix }}</sup></span>
+                <div class="product-description">
+                    <div class="tabbed">
+                        <ul class="tabs clearfix">
+                            <li class="">
+                                <span class="tab-head">{{ content.field_product_title_description }}</span>
+                            </li>
+                            <li class="">
+                                <span class="tab-head">{{ content.field_composition_title }}</span>
+                            </li>
+                            <li class="active">
+                                <span class="tab-head">{{ content.field_artist_title }}</span>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab">
+                                <p>{{ content.field_product_description }}</p>
+                            </div>
+                            <div class="tab">
+                                <p>{{ content.field_composition_description }}</p>
+                            </div>
+                            <div class="tab active">
+                                <p>{{ content.field_artist_description }} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block product-colors">
+                                                                                          {#changed#}
+                <span class="selected-color">Selected color: <span class="color-name">{{ product.colors[0].name }}</span></span>
+                <ul class="clearfix">
+                    {% for color in product.colors %}
+                        {#test#}
+                    {% if loop.first %}
+                        <li class="selected">
+                    {% else %}
+                        {#for colors in stock#}
+                        {% if color.stock %}
+                            <li>
+                        {% else %}
+                            {#if there is no this color in stock#}
+                            <li class="disabled">
+                        {% endif %}
+                    {% endif %}
+                        <a href="javascript:;" data-color="{{ color.name }}">
+                            <img src="{{ color.url }}" alt="">
+                        </a>
+                    </li>
+
+                    {% endfor %}
+                    {#<li class="disabled">#}
+                        {#<a href="javascript:;" data-color="brown light">#}
+                            {#<img src="assets/img/content/product-colors/color-brown-light.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="grey smoke">#}
+                            {#<img src="assets/img/content/product-colors/color-grey-smoke.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="white smoke">#}
+                            {#<img src="assets/img/content/product-colors/color-white-smoke.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="green blue">#}
+                            {#<img src="assets/img/content/product-colors/color-green-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="dark blue">#}
+                            {#<img src="assets/img/content/product-colors/color-dark-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="dark grey">#}
+                            {#<img src="assets/img/content/product-colors/color-dark-grey.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="light blue">#}
+                            {#<img src="assets/img/content/product-colors/color-light-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="gravel">#}
+                            {#<img src="assets/img/content/product-colors/color-gravel.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="gravel dark">#}
+                            {#<img src="assets/img/content/product-colors/color-gravel-dark.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="dark wood">#}
+                            {#<img src="assets/img/content/product-colors/color-dark-wood.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="wood">#}
+                            {#<img src="assets/img/content/product-colors/color-wood.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="red">#}
+                            {#<img src="assets/img/content/product-colors/color-red.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="blood red">#}
+                            {#<img src="assets/img/content/product-colors/color-blood-red.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="dark red">#}
+                            {#<img src="assets/img/content/product-colors/color-dark-red.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="brushed metal">#}
+                            {#<img src="assets/img/content/product-colors/color-brushed-metal.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="mineral blue">#}
+                            {#<img src="assets/img/content/product-colors/color-mineral-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="sky blue">#}
+                            {#<img src="assets/img/content/product-colors/color-sky-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="sea blue">#}
+                            {#<img src="assets/img/content/product-colors/color-sea-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="blue">#}
+                            {#<img src="assets/img/content/product-colors/color-blue.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="blue medium">#}
+                            {#<img src="assets/img/content/product-colors/color-blue-medium.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="teal">#}
+                            {#<img src="assets/img/content/product-colors/color-teal.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="darker wood">#}
+                            {#<img src="assets/img/content/product-colors/color-darker-wood.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="olive">#}
+                            {#<img src="assets/img/content/product-colors/color-olive.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="dark green">#}
+                            {#<img src="assets/img/content/product-colors/color-dark-green.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="dirt">#}
+                            {#<img src="assets/img/content/product-colors/color-dirt.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="javascript:;" data-color="pink">#}
+                            {#<img src="assets/img/content/product-colors/color-pink.png" alt="">#}
+                        {#</a>#}
+                    {#</li>#}
+                </ul>
+            </div>
+            <div class="block product-sizes">
+                <ul>
+                    {% for size in product.size %}
+                        {#test#}
+                        {% if loop.first %}
+                            <li class="selected">
+                        {% else %}
+                            {#for colors in stock#}
+                            {% if size.stock %}
+                                <li>
+                            {% else %}
+                                {#if there is no this color in stock#}
+                                <li class="disabled">
+                            {% endif %}
+                        {% endif %}
+                        <a href="javascript:;" data-description="{{ size.description }}">
+                            {{ size.title }}
+                        </a>
+                        </li>
+
+                    {% endfor %}
+
+
+
+
+                    {#<li class="disabled"><a href="javascript:;">xs</a></li>#}
+                    {#<li><a href="javascript:;">s</a></li>#}
+                    {#<li class="selected"><a href="javascript:;">m</a></li>#}
+                    {#<li><a href="javascript:;">l</a></li>#}
+                    {#<li><a href="javascript:;">xl</a></li>#}
+                    {#<li><a href="javascript:;">xxl</a></li>#}
+                </ul>
+                <a class="size-guide-link" href="javascript:;">Size guide</a>
+                <p class="size-description">{{ product.size[0].description }}</p>
+            </div>
+            <div class="block product-basket">
+
+                <div class="right">
+                    <p>{{ content.field_product_text }}</p>
+                    <a href="javascript:;" class="link">{{ content.field_product_stock_info_link }}</a>
+                </div>
+            </div>
+        </div>
+    </div>

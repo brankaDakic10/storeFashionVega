@@ -1,0 +1,123 @@
+{#<div class="block products-list">#}
+    {#<ul class="clearfix">#}
+<li class="product">
+    <div class="product-wrap">
+
+        <a class="product-thumbnail" href="javascript:;">
+            {#{{ breakpoint() }}#}
+            {#add#}
+            {% if product.photos %}
+
+                {% for photo in product.photos %}
+                {% if loop.first %}
+            <img src="{{ photo.url }}" alt="" class="front">
+                {% endif %}
+                    {% if loop.last %}
+            <img src="{{ photo.url }}" alt="" class="back">
+                    {% endif %}
+            {% endfor %}
+            {% endif %}
+        </a>
+
+        {#{{ breakpoint() }}#}
+        {#used to see #}
+        <div class="product-info">
+
+            {##}
+            <!-- reusable product-colors block from product page -->
+            <div class="product-colors">
+
+                <ul class="slick-initialized">
+                    {#<div aria-live="polite" class="slick-list draggable">#}
+                    {#<div class="slick-track" role="listbox">#}
+
+                    {#<div class="slick-slide slick-cloned">#}
+                    {#<div>#}
+
+
+                    {% for color in product.colors %}
+                        {#<div class="slick-slide slick-cloned">#}
+                        {#<div>#}
+
+                        {#test#}
+                        {% if loop.first %}
+                            <li class="selected">
+                        {% else %}
+                            <li>
+                        {% endif %}
+                            <a href="javascript:;" data-color="{{ color.name }}">
+                                <img src="{{ color.url }}" alt="">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- reusable product-sizes block from product page -->
+            <div class="product-sizes">
+                <ul class="slick-initialized">
+
+                    {#<div class="slick-list draggable">#}
+
+                    {#<div class="slick-track">#}
+
+                    {#test#}
+
+                    {#end#}
+
+                    {#<div class="slick-slide slick-active">#}
+                    {#<div>#}
+
+
+                    {% for size in product.size %}
+
+                        {#test#}
+
+                        {#<div class="slick-slide slick-active">#}
+                        {#<div>#}
+                        {#test#}
+                        {% if loop.first %}
+                            <li class="selected">
+                        {% else %}
+                            {#for colors in stock#}
+                            {% if size.stock %}
+                                <li>
+                            {% else %}
+                                {#if there is no this color in stock#}
+                                <li class="disabled">
+                            {% endif %}
+                        {% endif %}
+                            <a href="javascript:;" data-description="{{ size.description }}">
+                                {{ size.title }}
+                            </a>
+                        </li>
+                        {#</div>#}
+                        {#</div>#}
+
+                    {% endfor %}
+
+                    {#</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#</div>#}
+                </ul>
+            </div>
+
+            <a href="javascript:;" class="btn btn-black">add to bag</a>
+
+
+        </div>
+    </div>
+
+
+    <div class="product-bottom">
+        <h6><a href="javascript:;">{{ label }}</a></h6>
+        <span class="price">{{ product.productPrice.mainPrice }}<sup>,{{ product.productPrice.subPrice }} {{ product.productPrice.suffix }}</sup></span>
+    </div>
+
+</li>
+{#</ul>#}
+    {#<div class="centered">#}
+        {#<a class="btn btn-big load-more" href="javascript:;">Load more</a>#}
+    {#</div>#}
+{#</div>#}

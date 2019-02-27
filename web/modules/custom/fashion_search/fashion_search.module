@@ -1,0 +1,56 @@
+<?php
+/**
+ * Implementation of hook_form_alter
+ */
+
+function fashion_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+    // target a single form
+    if($form_id == 'search_block_form'){
+//        '#prefix' => '<div><div id="edit-page-wrapper">',
+//        '#suffix' => '</div>',
+        $form['#attached']['library'][] = 'fashion_search/search_block';
+
+        $form['keys']["#attributes"]['name'] = 'search-form';
+        $form['keys']['#prefix'] ='<div class="search-form">';
+        $form['keys']['#attributes']['class'] = "";
+//        $form["keys"]["#type"] = 'text';
+//        $form['actions']['submit']['#attributes'] = array('class' => array('btn btn-black btn-big'));
+
+        $form['actions']['submit']['#attributes']['class'][]='btn btn-black btn-big';
+        $form['actions']['submit']['#value'] = t('Search');
+        $form['actions']['#suffix'] = '</div>';
+    }
+
+
+}
+function fashion_search_form_node_product_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    if(isset($form["field_product_images"])){
+    $form['#validate'][] = 'custom_validate_ProductImageField';
+    }
+}
+
+function custom_validate_ProductImageField($form, &$form_state){
+      $images= $form["field_product_images"];
+//   add there isset($form["field_product_images"]['widget'][0])&& isset($form["field_product_images"]['widget'][1])
+     if (!isset($form["field_product_images"]['widget'][0]) && !isset($form["field_product_images"]['widget'][1])) {
+         $form_state->setError($images, t('Please enter minimum 2 images!'));
+     }
+
+}
+
+function fashion_search_form_taxonomy_term_colors_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+    if(isset($form["field_color_image"])){
+        $form['#validate'][] = 'custom_validate_term_image_field';
+    }
+}
+
+function custom_validate_term_image_field($form, &$form_state){
+    $imgField= $form["field_color_image"];
+    if (empty($form['field_color_image']['widget'][0]['#value']['fids'])) {
+//     used   breakpoint
+        $form_state->setError($imgField, t('Please enter image file!'));
+    }
+}

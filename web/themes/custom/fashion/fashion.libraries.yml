@@ -1,0 +1,13 @@
+global-css:
+  css:
+    theme:
+      assets/css/style.css: {}
+
+global-js:
+  js:
+    assets/scripts/libs/interact.min.js: {}
+    assets/scripts/libs/jquery.slick.min.js: {}
+    assets/scripts/helper.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

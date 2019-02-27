@@ -1,0 +1,80 @@
+<?php
+
+function fashion_theme_suggestions_views_view_alter(&$suggestions, $variables, $hook) {
+
+    // Add an interface-language specific suggestion to all theme hooks.
+    $suggestions[] = $hook . '__' . $variables['view']->id();
+
+}
+
+
+function fashion_preprocess_node(&$variables) {
+    $node = $variables['node'];
+//    added check for type
+    if ($node->getType() == 'product') {
+        $variables['view_mode'] = $variables['elements']['#view_mode'];
+//      $node = $variables['elements'];
+//   $node->get('field_product_price')->getValue();
+//   $node->get('field_product_description')->getValue();
+        $splitedPrice = explode(".", $node->field_product_price->value);
+        $variables['product']['productPrice'] = [
+
+            'mainPrice' => $splitedPrice[0],
+            'subPrice' => $splitedPrice[1],
+            'suffix' => $node->field_product_price->getSettings()['suffix'],
+        ];
+//    test
+        $variables['product']['colors'] = [];
+        foreach ($node->field_product_colors->getValue() as $targetTerm) {
+            $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($targetTerm['target_id']);
+
+            $colorImg = \Drupal::entityTypeManager()->getStorage('file')->load($term->field_color_image->target_id);
+            $variables['product']['colors'][] = [
+                'stock' => $term->field_color_stock->value,
+                'url' => file_create_url($colorImg->getFileUri()),
+                'title' => $colorImg->getFilename(),
+//            'name'=>  $colorImg->value['name'],
+                'name' => $term->name->value,
+            ];
+        }
+
+//    test end
+
+        //    test 222222
+        $variables['product']['size'] = [];
+        foreach ($node->field_product_size->getValue() as $targetSizeTerm) {
+            $termSize = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($targetSizeTerm['target_id']);
+
+//        field_description_size
+            $variables['product']['size'][] = [
+                'stock' => $termSize->field_stock_size->value,
+                'description' => $termSize->field_description_size->value,
+                'title' => $termSize->name->value,
+
+            ];
+        }
+
+//    test end
+        $variables['product']['photos'] = [];
+        if ($variables['view_mode'] == 'product_view_display') {
+            $images = $node->field_product_images->getValue();
+            for ($i = 0; $i < 2; $i++) {
+                if ($images[$i]) {
+                    $img = \Drupal::entityTypeManager()->getStorage('file')->load($images[$i]['target_id']);
+                    $variables['product']['photos'][] = [
+                        'url' => file_create_url($img->getFileUri()),
+                        'title' => $img->getFilename(),
+                    ];
+                }
+            }
+        } else {
+            foreach ($node->field_product_images->getValue() as $targetImage) {
+                $img = \Drupal::entityTypeManager()->getStorage('file')->load($targetImage['target_id']);
+                $variables['product']['photos'][] = [
+                    'url' => file_create_url($img->getFileUri()),
+                    'title' => $img->getFilename(),
+                ];
+            }
+        }
+    }
+}
