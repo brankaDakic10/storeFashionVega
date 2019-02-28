@@ -13,6 +13,7 @@ use Drupal\Core\Block\BlockBase;
  * @Block(
  *   id = "subscribe_block",
  *   admin_label = @Translation("Fashion Subscribe block"),
+ *   category = @Translation("Blocks")
  * )
  */
 class  FashionSubscribeBlock extends BlockBase {

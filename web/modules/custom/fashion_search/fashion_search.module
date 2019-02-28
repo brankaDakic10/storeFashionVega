@@ -46,7 +46,7 @@ function fashion_search_form_taxonomy_term_colors_form_alter(&$form, \Drupal\Cor
         $form['#validate'][] = 'custom_validate_term_image_field';
     }
 }
-
+//validation for widget adding term
 function custom_validate_term_image_field($form, &$form_state){
     $imgField= $form["field_color_image"];
     if (empty($form['field_color_image']['widget'][0]['#value']['fids'])) {
