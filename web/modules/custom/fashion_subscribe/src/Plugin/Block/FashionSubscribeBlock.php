@@ -17,11 +17,22 @@ use Drupal\Core\Block\BlockBase;
  * )
  */
 class  FashionSubscribeBlock extends BlockBase {
-    /**
-     * {@inheritdoc}
-     */
-    public function build()
+    public function build() {
+
+//        $nid = $node->nid->value;
+       if( \Drupal::routeMatch()->getParameter('node')){
+           $build[] = \Drupal::formBuilder()->getForm('Drupal\fashion_subscribe\Form\FashionSubscribeForm');
+       }
+       else {
+           $build[] = $this->t('Hello World');
+       }
+
+        return $build;
+    }
+//   this  clear cache
+    public function getCacheMaxAge()
     {
-        return \Drupal::formBuilder()->getForm('Drupal\fashion_subscribe\Form\FashionSubscribeForm');
+       return 0;
     }
 }
+
