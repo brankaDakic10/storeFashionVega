@@ -1,0 +1,4 @@
+subscribe_block:
+  css:
+    theme:
+      css/style.css: {}

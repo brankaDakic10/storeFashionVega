@@ -4,9 +4,20 @@
  * Implements hook_cron().
  */
 function fashion_subscribe_cron() {
-    // We access our configuration.
-    $cron_config = \Drupal::configFactory()
-        ->getEditable('fashion_subscribe.settings');
-    $state = \Drupal::state();
-    $users = $state->get('users');
+    $items = [];
+//    $items['fashion_subscribed_users'] = [];
+
+
+
+    $stateData = \Drupal::state()->get('users');
+
+    $allDataFromConfig = \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get();
+
+    $items = array_merge($stateData,$allDataFromConfig);
+//    $itemsResult = array_unique($items);
+    $a=1;
+//    $result = array_map(function($stateData, $allDataFromConfig){
+//        return array_merge(isset(($stateData) ? ($stateData : array(), isset($allDataFromConfig) ? $allDataFromConfig : array());
+//    },$stateData, $allDataFromConfig);
+
 }

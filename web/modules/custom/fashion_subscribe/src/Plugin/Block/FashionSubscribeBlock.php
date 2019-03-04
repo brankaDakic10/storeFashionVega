@@ -22,6 +22,7 @@ class  FashionSubscribeBlock extends BlockBase {
 //        $nid = $node->nid->value;
        if( \Drupal::routeMatch()->getParameter('node')){
            $build[] = \Drupal::formBuilder()->getForm('Drupal\fashion_subscribe\Form\FashionSubscribeForm');
+           $build[] = \Drupal::formBuilder()->getForm('Drupal\fashion_subscribe\Form\FashionSubscribeSecondForm');
        }
        else {
            $build[] = $this->t('Hello World');
