@@ -22,6 +22,7 @@ use Drupal\Core\Form\FormStateInterface;
     public function getFormId() {
         return 'fashion_subscribe_form';
     }
+
     /**
      * (@inheritdoc)
      */
@@ -89,9 +90,12 @@ use Drupal\Core\Form\FormStateInterface;
       *
       */
      public function validateForm(array &$form, FormStateInterface $form_state) {
-//         parent::validateForm($form, $form_state);
          $valueEmail = $form_state->getValue('email');
-         $storedValue = \Drupal::state()->get($valueEmail);
+//         this is storedValue with state submit example
+//         $storedValue = \Drupal::state()->get($valueEmail);
+
+//        this is storedValue with example saving data  in config which we made in submitForm()   -fashion_subscribe.settings
+          $storedValue= \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get($form_state->getValue('email'));
 //         if ($valueEmail == "") {
 //             $form_state->setErrorByName('email', t('Please enter you email address.'));
 //         }
@@ -114,12 +118,13 @@ use Drupal\Core\Form\FormStateInterface;
     /**
      * (@inheritdoc)
      */
+
     public function submitForm(array &$form, FormStateInterface $form_state) {
 //        for debug
-//   $a=1;
+//         $a=1;
 //         test to get current user id
 //        $user = User::load(\Drupal::currentUser()->id());
-        $state = \Drupal::state();
+
 //       $stateEmail= \Drupal::state()->get('email');
 //        $email = $form_state->getUserInput()['email'];
 
@@ -130,11 +135,32 @@ use Drupal\Core\Form\FormStateInterface;
             'created' => time(),
 
         ];
+//        saving data  in state example
+//        $state = \Drupal::state();
+////                    this 'email' is unique key for set state od user
+///      $users = $state->get('users');
+///      $users[$form_state->getValue('email')]
+///      $users[] = [$form_state->getValue('email') =>$userState]
+//       $state->set('user', $users);
+//       end saving data  in state
 
-//                    this 'email' is unique key for set state od user
-      $state->set($form_state->getValue('email'), $userState);
+
+//        saving data  in config
+        $values = $form_state->getValues();
+        \Drupal::configFactory()->getEditable('fashion_subscribe.settings')
+            ->set($form_state->getValue('email'), $userState)
+            ->save();
+
+//        $this->config('fashion_subscribe.settings')
 
 
+
+
+
+
+
+
+//        example with Ajax
 //        $response = new AjaxResponse();
 //        $response->addCommand(new ReplaceCommand('.subscribe-form', 'Thank you for subscribing to our newsletter'));
 //        return  $response;
