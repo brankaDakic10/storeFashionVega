@@ -77,7 +77,7 @@ use Drupal\Core\Form\FormStateInterface;
              $form_state->setErrorByName('email', t('The email address %mail is not valid.', array('%mail' =>
                  $valueEmail)));
          }
-         if ($storedValue) {
+         if ($storedValue['com']) {
              $form_state->setErrorByName('email', t('%mail email address is already subscribed.', array('%mail' =>
                  $valueEmail)));
          }
@@ -105,7 +105,7 @@ use Drupal\Core\Form\FormStateInterface;
 //        saving data  in config
         $values = $form_state->getValues();
         \Drupal::configFactory()->getEditable('fashion_subscribe.settings')
-            ->set($form_state->getValue('email'), $userState)
+            ->set( str_replace('.', '_',$form_state->getValue('email')), $userState)
             ->save();
 
 //        $this->config('fashion_subscribe.settings')

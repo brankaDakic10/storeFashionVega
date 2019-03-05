@@ -106,8 +106,12 @@ class FashionSubscribeSecondForm extends FormBase {
 //     here is null  $users
         $users = $state->get('users');
 //        $users[$form_state->getValue('email')];
-        $users[$form_state->getValue('email')] = $userState;
+        $users[ str_replace('.', '_',$form_state->getValue('email'))] = $userState;
         $state->set('users', $users);
+
+
+
+
 //       end saving data  in state users
 
 

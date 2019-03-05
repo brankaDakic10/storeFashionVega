@@ -1,0 +1,76 @@
+<?php
+use Drupal\Core\Database\Database;
+/**
+ * Implements hook_schema().
+ *
+ */
+function fashion_subscribe_schema() {
+    $schema['fashion_subscribe'] =[
+        'description' => t('Stores email, nid and timestamp for an fashion_subscribe'),
+        'fields' => [
+            'id' => [
+                'description' => 'The primary identifier for the record.',
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ],
+            'nid' => [
+                'description' => 'The {node} .nid for fashion_subscribe.',
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => FALSE,
+                'default' => 0,
+            ],
+            'mail' => [
+                'description' => 'User\'s email address.',
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => FALSE,
+                'default' => '',
+            ],
+            'created' => [
+                'type' => 'int',
+                'not null' => TRUE,
+                'default' => 0,
+                'description' => 'Timestamp for when fashion_subscribe was created.',
+            ]
+        ],
+        'primary key' => array('id'),
+];
+
+    return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function fashion_subscribe_install() {
+    $schema = fashion_subscribe_schema();
+    if (!\Drupal::database()->schema()->tableExists('fashion_subscribe')) {
+        \Drupal::database()
+            ->schema()
+            ->createTable('fashion_subscribe', $schema['fashion_subscribe']);
+    }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function fashion_subscribe_uninstall() {
+    if (\Drupal::database()->schema()->tableExists('fashion_subscribe')) {
+        \Drupal::database()->schema()->dropTable('fashion_subscribe');
+    }
+}
+
+/**
+ * Implements hook_update()
+ */
+function fashion_subscribe_update_8001() {
+    $spec = [
+        'type' => 'int',
+        'description' => 'Email notification for users',
+        'default' => 0,
+    ];
+    $schema = Database::getConnection()->schema();
+    $schema->addField('fashion_subscribe', 'email_notification', $spec);
+}

@@ -5,19 +5,35 @@
  */
 function fashion_subscribe_cron() {
     $items = [];
-//    $items['fashion_subscribed_users'] = [];
-
-
 
     $stateData = \Drupal::state()->get('users');
 
     $allDataFromConfig = \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get();
 
-    $items = array_merge($stateData,$allDataFromConfig);
-//    $itemsResult = array_unique($items);
-    $a=1;
-//    $result = array_map(function($stateData, $allDataFromConfig){
-//        return array_merge(isset(($stateData) ? ($stateData : array(), isset($allDataFromConfig) ? $allDataFromConfig : array());
-//    },$stateData, $allDataFromConfig);
+//    $configArray = [];
+//
+//    foreach($allDataFromConfig as $key => $value) {
+//        $configArray[$key] = $value['com'];
+//    }
+//
+
+// all saved array_unique data from config and state
+  $items = array_merge($stateData,$allDataFromConfig);
+//  $itemsResult = array_unique($items );
+
+
+//    foreach($items as $key => $value) {
+////
+//    }
+  $a=1;
+//    $connection = \Drupal::database();
+//    $result = $connection->insert('fashion_subscribe')
+//        ->fields([
+//            'nid' => 1,
+//            'mail' => 1,
+//            'created' => 1,
+//            'email_notification'=> 1,
+//        ])
+//        ->execute();
 
 }
