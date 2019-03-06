@@ -8,7 +8,7 @@ class FashionSubscribeUsersController extends ControllerBase
   public function content(){
       return [
           '#theme' => 'display_fashion_subscribe_users',
-          'usercontent' =>  'form',
+          '#usercontent' =>  'form',
       ];
   }
 }
