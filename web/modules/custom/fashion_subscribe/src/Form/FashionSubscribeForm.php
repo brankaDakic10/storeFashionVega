@@ -68,16 +68,16 @@ use Drupal\Core\Form\FormStateInterface;
       *
       */
      public function validateForm(array &$form, FormStateInterface $form_state) {
-         $valueEmail = $form_state->getValue('email');
+         $valueEmail =$form_state->getValue('email');
 //        this is storedValue with example saving data  in config which we made in submitForm()   -fashion_subscribe.settings
-          $storedValue= \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get($form_state->getValue('email'));
+          $storedValue= \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get(str_replace('.', '_',$form_state->getValue('email')));
 
 
          if ( !filter_var( $valueEmail, FILTER_VALIDATE_EMAIL)) {
              $form_state->setErrorByName('email', t('The email address %mail is not valid.', array('%mail' =>
                  $valueEmail)));
          }
-         if ($storedValue['com']) {
+         if ($storedValue) {
              $form_state->setErrorByName('email', t('%mail email address is already subscribed.', array('%mail' =>
                  $valueEmail)));
          }
@@ -109,7 +109,7 @@ use Drupal\Core\Form\FormStateInterface;
             ->save();
 
 //        $this->config('fashion_subscribe.settings')
-//        see list of config in brakpoint
+//        see list of config in breakpoint
 //     \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get()
 
 

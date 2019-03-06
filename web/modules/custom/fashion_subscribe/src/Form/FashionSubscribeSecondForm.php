@@ -3,6 +3,7 @@
  * @file
  * Contains \Drupal\fashion_subscribe\Form\FashionSubscribeSecondForm
  */
+
 namespace Drupal\fashion_subscribe\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -11,25 +12,27 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Provides an Subscribe Email Form form.
  */
-class FashionSubscribeSecondForm extends FormBase {
+class FashionSubscribeSecondForm extends FormBase
+{
     /**
      * (@inheritdoc)
      */
-    public function getFormId() {
+    public function getFormId()
+    {
         return 'fashion_subscribe_second_form';
     }
-
     /**
      * (@inheritdoc)
      */
-    public function buildForm(array $form, FormStateInterface $form_state) {
+    public function buildForm(array $form, FormStateInterface $form_state)
+    {
 //        test to get node id
 //        $node = \Drupal::routeMatch()->getParameter('node');
 //        $nid = $node->nid->value;
 //        $getEmailValue=$form_state->getUserInput()['email'];
         $form['#attached']['library'][] = 'fashion_subscribe/subscribe_block';
         $form['#attributes']['class'] = [];
-        $form['#prefix']='<div class="subscribe-form">';
+        $form['#prefix'] = '<div class="subscribe-form">';
         $form['#suffix'] = '</div>';
         $form['email'] = [
             '#title' => t("SUBSCRIBE TO OUR NEWSLETTER"),
@@ -37,8 +40,8 @@ class FashionSubscribeSecondForm extends FormBase {
 
             '#attributes' => [
                 'placeholder' => t("Your e-mail."),
-                'class'=> "",
-                'id'=> 'subscribe-input'
+                'class' => "",
+                'id' => 'subscribe-input'
             ],
 
         ];
@@ -48,7 +51,7 @@ class FashionSubscribeSecondForm extends FormBase {
             '#value' => $this->t('OK'),
             '#button_type' => 'primary',
             '#attributes' => [
-                'id'=> 'subscribe-submit',
+                'id' => 'subscribe-submit',
             ],
         ];
 //        $form['nid'] = [
@@ -66,14 +69,15 @@ class FashionSubscribeSecondForm extends FormBase {
      * @param \Drupal\Core\Form\FormStateInterface $form_state
      *
      */
-    public function validateForm(array &$form, FormStateInterface $form_state) {
+    public function validateForm(array &$form, FormStateInterface $form_state)
+    {
         $users = \Drupal::state()->get('users');
         $valueEmail = $form_state->getValue('email');
 
 //         this is storedValue with state submit example
-        $storedValue = isset($users[$valueEmail]);
+        $storedValue = isset($users[str_replace('.', '_', $form_state->getValue('email'))]);
 
-        if ( !filter_var( $valueEmail, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($valueEmail, FILTER_VALIDATE_EMAIL)) {
             $form_state->setErrorByName('email', t('The email address %mail is not valid.', array('%mail' =>
                 $valueEmail)));
         }
@@ -81,20 +85,15 @@ class FashionSubscribeSecondForm extends FormBase {
             $form_state->setErrorByName('email', t('%mail email address is already subscribed.', array('%mail' =>
                 $valueEmail)));
         }
-
-
-
-
     }
 
     /**
      * (@inheritdoc)
      */
-
-    public function submitForm(array &$form, FormStateInterface $form_state) {
+    public function submitForm(array &$form, FormStateInterface $form_state)
+    {
 
         $node = \Drupal::routeMatch()->getParameter('node');
-//
         $userState = [
             'nid' => $node->id(),
             'created' => time(),
@@ -106,18 +105,14 @@ class FashionSubscribeSecondForm extends FormBase {
 //     here is null  $users
         $users = $state->get('users');
 //        $users[$form_state->getValue('email')];
-        $users[ str_replace('.', '_',$form_state->getValue('email'))] = $userState;
+        $users[str_replace('.', '_', $form_state->getValue('email'))] = $userState;
         $state->set('users', $users);
-
-
-
-
 //       end saving data  in state users
-
-
-
 //        see all users in state form example use breakpoint
 //      \Drupal::state()->get('users')
+
+
+
 
 
 
