@@ -1,0 +1,7 @@
+fashion_subscribe_users:
+  path: '/fashion-subscribe/users'
+  defaults:
+    _controller: '\Drupal\display_fashion_subscribe_users\Controller\FashionSubscribeUsersController::content'
+    _title: 'Admin page with all subscribed users'
+  requirements:
+    _permission: 'access content'

@@ -7,22 +7,54 @@
 function fashion_subscribe_cron()
 {
     $items = [];
+    $connection = \Drupal::database();
+    $stateData = \Drupal::state()->get('users'); // [1,2]
+    $allDataFromConfig = \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get();  // [3,4]
 
-    $stateData = \Drupal::state()->get('users');
-    $allDataFromConfig = \Drupal::configFactory()->getEditable('fashion_subscribe.settings')->get();
-
-// all saved array_unique data from config and state
-    $items = array_merge($stateData, $allDataFromConfig);
-
+    $missingState =  array_diff_assoc($allDataFromConfig, $stateData); // [3,4]
+    $missingConf = array_diff_assoc($stateData, $allDataFromConfig); // [1,2]
+//    set new missing  values from   $missingState  in data $stateData
+    \Drupal::state()->set('users', $stateData + $missingState);
+    //    set new missing  values in config data $allDataFromConfig
     foreach ($items as $key => $value) {
-        $connection = \Drupal::database();
-        $query = $connection->insert('fashion_subscribe')
-            ->fields([
-                'nid' => $value['nid'],
-                'mail' =>$key,
-                'created' => $value['created'],
-                'email_notification' => $value['email_notification'],
-            ])->execute();
+        \Drupal::configFactory()->getEditable('fashion_subscribe.settings')
+            ->set($key, $value)
+            ->save();
     }
-//   $a=1;
+//    foreach ($missingState as  $key => $value) {
+//        $stateData[$key]=$value;
+//
+//    }
+//    foreach ($missingConf as  $key => $value) {
+//        $allDataFromConfig[$key]=$value;
+//
+//    }
+
+    $dbContent = $connection->select('fashion_subscribe')->fields('fashion_subscribe', ['nid'])->execute()->fetchAll();
+
+    if(empty($dbContent)) {
+        $items = $stateData + $missingState;
+        foreach ($items as $key => $value) {
+
+            $query = $connection->insert('fashion_subscribe')
+                ->fields([
+                    'nid' => $value['nid'],
+                    'mail' => $key,
+                    'created' => $value['created'],
+                    'email_notification' => 0,
+                ])->execute();
+        }
+    } else {
+// all saved array_unique data from config and state
+        $items = $missingState + $missingConf;
+        foreach ($items as $key => $value) {
+            $query = $connection->insert('fashion_subscribe')
+                ->fields([
+                    'nid' => $value['nid'],
+                    'mail' => $key,
+                    'created' => $value['created'],
+                    'email_notification' => 0,
+                ])->execute();
+        }
+    }
 }
