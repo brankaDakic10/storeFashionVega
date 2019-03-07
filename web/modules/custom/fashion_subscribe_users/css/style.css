@@ -1,0 +1,15 @@
+
+table{
+    height: 600px!important;
+    margin-left: 150px!important;
+    margin-bottom: 150px!important;
+    font-weight: bold;
+}
+caption {
+    /*max-width: 40%;*/
+    /*font-size: 18px;*/
+    padding: 10px!important;
+    height: 30px!important;
+    background-color: orange!important;
+
+}

@@ -6,6 +6,7 @@ function fashion_subscribe_users_theme($existing, $type, $theme, $path) {
     return [
         'display_fashion_subscribe_users' => [
             'variables' => ['usercontent' => NULL],
+
         ],
     ];
 }

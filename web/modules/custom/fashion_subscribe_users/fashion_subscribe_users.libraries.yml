@@ -1,0 +1,4 @@
+subscribe_table:
+  css:
+    theme:
+      css/style.css: {}
