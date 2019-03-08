@@ -138,7 +138,7 @@ class FashionSubscribeUsersForm extends FormBase
         $db = \Drupal::database();
 
         foreach ($form_state->getUserInput() as $key => $value) {
-            if (strpos($key,'checkbox_') != FALSE ) {
+            if (strpos($key,'checkbox_') !== FALSE  && $value) {
                 $id = explode('_',$key)[1];
                 $db->update('fashion_subscribe')
                     ->fields(['email_notification' => 1])

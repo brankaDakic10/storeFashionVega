@@ -1,0 +1,4 @@
+services:
+  fashion_github_block.custom_services:
+    class: Drupal\fashion_github_block\Services\FahionGithubService
+    arguments: []

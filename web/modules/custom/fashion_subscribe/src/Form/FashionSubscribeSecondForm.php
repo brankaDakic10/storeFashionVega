@@ -112,10 +112,6 @@ class FashionSubscribeSecondForm extends FormBase
 //      \Drupal::state()->get('users')
 
 
-
-
-
-
     }
 
 

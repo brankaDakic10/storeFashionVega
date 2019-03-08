@@ -1,0 +1,15 @@
+{#resource API#}
+{#https://api.github.com/search/repositories?q=Drupal&sort=stars&order=desc #}
+ {% if label %}
+     <h2{{ title_attributes }}>{{ label }}</h2>
+ {% endif %}
+   {#<h2>GitHub APi data</h2>#}
+{% for item in content.items |slice(0, 3) %}
+    <div class="block-github-info">
+        <p><span> Name: </span> </p>
+        <p> {{ item.name}}</p>
+        <p> <span> Description: </span> </p>
+        <p>{{ item.description}}</p>
+        <p><span> Homepage: </span>   {{ item.homepage}}</p>
+    </div>
+{% endfor %}

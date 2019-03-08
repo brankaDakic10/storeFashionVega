@@ -1,0 +1,10 @@
+.block-github-info{
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.block-github-info span{
+    font-weight: bold!important;
+    color:orangered!important;
+    font-size: 18px;
+}

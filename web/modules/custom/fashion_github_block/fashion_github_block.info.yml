@@ -1,0 +1,6 @@
+name: Fashion GitHub Info Block
+description: Defines a custom block with data from GitHub API.
+package: Custom
+type: module
+core: 8.x
+

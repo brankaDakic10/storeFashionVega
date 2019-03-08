@@ -4,6 +4,7 @@ table{
     margin-left: 150px!important;
     margin-bottom: 150px!important;
     font-weight: bold;
+    /*border: 1px solid black;*/
 }
 caption {
     /*max-width: 40%;*/
